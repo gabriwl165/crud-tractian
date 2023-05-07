@@ -28,9 +28,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           
             #Baixando atualizações EC2 AWS
-            cd /home/ubuntu/sin-chan &&
-            git checkout master &&
+            cd /home/ec2-user/crud-tractian &&
+            git checkout main &&
             git fetch --all &&
-            git reset --hard origin/master &&
-            git pull origin master
+            git reset --hard origin/main &&
+            git pull origin main
           '
