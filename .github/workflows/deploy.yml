@@ -2,7 +2,7 @@ name: CI/CD AWS Deploy Tractian
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
