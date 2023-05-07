@@ -1,17 +1,12 @@
 import express from 'express'
-import { GenericRouter } from '../generic/GenericRouter'
-import { CompanyController } from '../controller/CompanyController'
 
-class CompanyRouter extends GenericRouter<CompanyController> {
+import { saveCompany, findCompanyById, findAllCompanys, deleteCompanyById, updateCompany } from '../controller/CompanyController'
+import { hasPermissionToCreate, hasPermissionToDelete, hasPermissionToRead, hasPermissionToWrite, isAuthenticated } from '../security/Authentication';
 
-    protected getController(): CompanyController {
-        return new CompanyController();
-    }
-
-}
-const company: CompanyRouter = new CompanyRouter();
-
-export default (router: express.Router) => {
-    company.getRoutes(router)
-    
+export default(router: express.Router) => {
+    router.post("/company/", isAuthenticated, hasPermissionToCreate, saveCompany);
+    router.get("/company/", isAuthenticated, hasPermissionToRead, findAllCompanys);
+    router.get("/company/:id", isAuthenticated, hasPermissionToRead, findCompanyById);
+    router.delete("/company/:id", isAuthenticated, hasPermissionToDelete, deleteCompanyById);
+    router.patch("/company/:id", isAuthenticated, hasPermissionToWrite, updateCompany);
 }

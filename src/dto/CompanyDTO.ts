@@ -1,5 +1,8 @@
-export default class CompanyDTO {
+import { Types } from "mongoose"
 
-    constructor(public nome: string) {}
-
+export interface CompanyDTO {
+    name: string
+    units: [Types.ObjectId]
+    users: [Types.ObjectId]
+    timestamp: Date
 }
