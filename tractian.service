@@ -1,0 +1,19 @@
+[Unit]
+Description=Tractian - CRUD
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/npm start
+WorkingDirectory=/home/ubuntu/crud-tractian
+Environment=HASH_SALT=""
+Environment=MONGO_URL=""
+Environment=JWT_SECRET=""
+Environment=ACCESS_ID=""
+Environment=ACCESS_KEY=""
+Environment=BUCKET_NAME=""
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
