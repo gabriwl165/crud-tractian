@@ -13,6 +13,10 @@ export default {
     },
     validatePassword: async (login: string, password: string) => {
         const userFromDB: UserLoginInterfaceDTO = await findByLogin(login)
+        if(!userFromDB){
+            console.log('caralho ', userFromDB)
+            throw new Error("Usuário não encontrado")
+        }
         return await isValidatePassword(password, userFromDB.password)   
     },
     findById: async (id: string) => {

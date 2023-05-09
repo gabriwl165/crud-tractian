@@ -50,7 +50,7 @@ export const updateCompany = async (req: Request, res: Response) => {
         if (unitHasOnlyKey) {
 
             await CompanyService.updateByID(company, id)
-            let newCompany = await CompanyService.findById(id)
+            const newCompany = await CompanyService.findById(id)
 
             return res.status(200).send(new RetornoHTTP('successfully updated', true, newCompany))
             

@@ -9,10 +9,16 @@ export const login = async (req: Request, res: Response) => {
         if(!req.body || !req.body.login || !req.body.password){
             return res.status(400).send(new ReponseDTO("Invalid request body data", false))
         }
+
         const {login} = req.body
         const {password} = req.body
-        const isValid = await UserService.validatePassword(login, password)
+
         const userFromDB = await UserService.findByLogin(login)
+        if(!userFromDB){
+            return res.status(400).send(new ReponseDTO("User not found", false))
+        }
+
+        const isValid = await UserService.validatePassword(login, password)
         if(userFromDB && isValid){
 
             const user: UserLoginInterfaceDTO = {

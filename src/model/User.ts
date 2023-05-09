@@ -3,7 +3,7 @@ import mongoose, { Types } from 'mongoose'
 const UserSchema = new mongoose.Schema({
     login: {type: String, required: [true, 'Login is required'], unique: true},
     password: {type: String, required: [true, 'Password is required']},
-    company: {type: Types.ObjectId, ref: "Company", required: [true, "Company is required"]},
+    company: {type: Types.ObjectId, ref: "Company"},
     permission: {
         type: [{type: String, enum: ["CREATE", "READ", "WRITE", "DELETE"]}],
         required: [true, "Permissions of the use is required"],

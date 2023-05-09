@@ -35,7 +35,7 @@ export const updateAsset = async (req: Request, res: Response) => {
         }
 
         await AssetService.updateById(company, id)
-        let newCompany = await AssetService.findById(id)
+        const newCompany = await AssetService.findById(id)
 
         return res.status(200).send(new ResponseDTO('successfully updated', true, newCompany))
 
@@ -74,7 +74,7 @@ export const findAllAssetByUnit = async (req: Request, res: Response) => {
         }
 
         const { id } = req.params
-        let assets = await AssetService.findAllAssetByUnit(id)
+        const assets = await AssetService.findAllAssetByUnit(id)
         return res.status(200).send(new ResponseDTO("All assets successfully recovered", true, assets))
     } catch (err) {
         return res.status(500)
