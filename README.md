@@ -1,17 +1,29 @@
-
 # Tractian Back-end Desafio
 
 Esse é o repositório para o desafio back-end para Tractian. 
+
+Alguns pontos que valem a penas serem apontados:
+
+° Foi adicionado uma integração com a AWS na rota para salvar Asset, enviando um form-data com seu file que deve ser salvo no S3 
+
+° Sistema de segurança com JWT e roles de acesso a certas features do Sistema
+
+° Foi configurado nesse repositório GitHub Actions para CI/CD em uma EC2 da AWS que está rodando a aplicação
+
+° Nesse mesmo repositório você pode encontrar .service para configuração da aplicação como serviço em servidores Linux, assim como a configuração das variáveis de ambientes que devem ser usadas durante a execução da API
+
+Documentação Postman: https://documenter.getpostman.com/view/13485869/2s93eYWYHa
+
 Algumas das tecnologias utilizadas foram: 
 <br> ° Express
 <br> ° Node
 <br> ° AWS
 <br> ° JWT
+<br> ° Systemd
 <br> ° BCrypt
 <br> ° Mongoose
 <br> ° TypeScript
 <br> Irei descrever brevente sobre alguns end-points que você pode encontrar no projeto
-
 
 ## Login
 
