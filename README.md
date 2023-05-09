@@ -21,7 +21,7 @@ Algumas das tecnologias utilizadas foram:
 <br> ° JWT
 <br> ° Systemd
 <br> ° BCrypt
-<br> ° Mongoose
+<br> ° Mongoose/MongoDB 
 <br> ° TypeScript
 <br> Irei descrever brevente sobre alguns end-points que você pode encontrar no projeto
 
