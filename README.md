@@ -2,7 +2,7 @@
 
 Esse é o repositório para o desafio back-end para Tractian. 
 
-Alguns pontos que valem a penas serem apontados:
+Alguns tópicos que valem a pena serem apontados:
 
 ° Foi adicionado uma integração com a AWS na rota para salvar Asset, enviando um form-data com seu file que deve ser salvo no S3 
 
