@@ -2,6 +2,7 @@ import { UserModel, findByLogin } from '../model/User'
 import { hashPassword, isValidatePassword } from '../utils/AuthenticationUtils'
 import { UserLoginInterfaceDTO, UserDTO } from '../dto/UserDTO'
 
+
 export default {
     save: async (obj: any) => {
         const {password} = obj
@@ -13,10 +14,7 @@ export default {
     },
     validatePassword: async (login: string, password: string) => {
         const userFromDB: UserLoginInterfaceDTO = await findByLogin(login)
-        if(!userFromDB){
-            console.log('caralho ', userFromDB)
-            throw new Error("Usuário não encontrado")
-        }
+        
         return await isValidatePassword(password, userFromDB.password)   
     },
     findById: async (id: string) => {
@@ -26,6 +24,8 @@ export default {
         return await UserModel.find().populate("company")
     },
     updateById: async (id: string, user: UserDTO) => {
+        const {password} = user
+        user.password = await hashPassword(password)
         await UserModel.findByIdAndUpdate(id, user)
     }
 }

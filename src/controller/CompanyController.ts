@@ -11,17 +11,18 @@ export const saveCompany = async (req: Request, res: Response) => {
     try {
         if (!req.body) {
             return res.status(400).send(new RetornoHTTP('Invalid request body data', false))
-        }
-
+        }   
+        
         const company: CompanyDTO = {
             name: req.body.name,
             units: req.body.units,
             users: req.body.users,
             timestamp: new Date()
         }
-
-        const unitHasOnlyKey: boolean = company.units.every((unit: any) => typeof unit === 'string')
-        if (unitHasOnlyKey) {
+        
+        const unitHasOnlyKey: boolean = company.units?.every((unit: any) => typeof unit === 'string')
+        
+        if (unitHasOnlyKey || !company.units) {
             const newCompany = await CompanyService.save(company)
             return res.status(200).send(new RetornoHTTP('successfully created', true, newCompany))
         } return res.status(400).send(new RetornoHTTP("Units must have only keys, not the whole object", false))

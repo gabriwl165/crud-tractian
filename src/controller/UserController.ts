@@ -49,7 +49,7 @@ export const updateById = async (req: Request, res: Response) => {
 
         await UserService.updateById(id, user)
 
-        return res.status(200).send(new RetornoHTTP("User successfully updated", true, user))
+        return res.status(200).send(new RetornoHTTP("User successfully updated", true))
 
     } catch (err) {
         if (err?.code === 11000) {
@@ -77,7 +77,7 @@ export const findUserById = async (req: Request, res: Response) => {
 export const findAllUsers = async (req: Request, res: Response) => {
     try {
         const asset = await UserService.findAll()
-        return res.status(200).send(new RetornoHTTP("All companys successfully recovered", true, asset))
+        return res.status(200).send(new RetornoHTTP("All users successfully recovered", true, asset))
     } catch (err) {
         return res.status(500).send(new RetornoHTTP(errorTemplateErro("find all"), false, err))
     }

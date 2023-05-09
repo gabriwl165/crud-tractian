@@ -8,6 +8,11 @@ export const saveAsset = async (req: Request, res: Response) => {
         if (!req.body) {
             return res.status(400).send(new ResponseDTO("Invalid request body data", false))
         }
+
+        if(parseInt(req.body?.healthLevel) < 0 || parseInt(req.body?.healthLevel) > 100){
+            return res.status(400).send(new ResponseDTO("Health level must be between 1 and 100", false))
+        }
+        
         const asset = await AssetService.save(req.body)
         return res.status(200).send(new ResponseDTO("Asset successfully created", true, asset))
     } catch (err) {
@@ -32,6 +37,10 @@ export const updateAsset = async (req: Request, res: Response) => {
             healthLevel: req.body.healthLevel,
             units: req.body.units,
             timestamp: new Date(),
+        }
+
+        if(parseInt(company.healthLevel) < 0 || parseInt(company.healthLevel) > 100){
+            return res.status(400).send(new ResponseDTO("Health level must be between 1 and 100", false))
         }
 
         await AssetService.updateById(company, id)

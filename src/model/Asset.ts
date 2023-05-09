@@ -7,7 +7,15 @@ const AssetSchema = new mongoose.Schema({
     model: {type: String, required: [true, "Model of the asset is required"]},
     owner: {type: String, required: [true, "Owner of the asset is required"]},
     status: {type: String, enum: ['Running', 'Alerting', 'Stopped'], required: [true, "Status of the asset is required"]},
-    healthLevel: {type: String, required: [true, "Health Level between 0 and 100 is required"]},
+    healthLevel: {
+        type: Number,
+        validate: {
+            validator: (value: number) => {
+                return value >= 0 && value <= 100
+            },
+            message: "Health level must be between 0 and 100"
+        }, 
+        required: [true, "Health Level between 0 and 100 is required"]},
     units: {type: Types.ObjectId, ref: "Unit", required: [true, "An asset must be attached to a unit"]},
     timestamp: {type: Date, default: Date.now()}
 })
